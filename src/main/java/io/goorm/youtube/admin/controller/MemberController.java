@@ -32,7 +32,7 @@ public class MemberController {
     public String  list(DefaultVO defaultVO, Model model) {
 
         model.addAttribute("posts", memberService.findAll(defaultVO));
-        model.addAttribute("title", "사용자관라-리스트" );
+        model.addAttribute("title", "사용자관리-리스트" );
         model.addAttribute("page", defaultVO.getPage());
         model.addAttribute("totalPages", defaultVO.getTotalPages());
 
