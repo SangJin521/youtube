@@ -142,4 +142,25 @@ public class MemberController {
         //return "redirect:/mgr/videos/" + video.getVideoSeq();
     }
 
+    //비밀번호 재설정 폼
+    @GetMapping("/resetpw")
+    public String resetpwForm(Model model) {
+
+        model.addAttribute("title", "사용자-비밀번호재설정" );
+
+        return "resetpw";
+    }
+
+    //비밀번호 재설정
+    @PostMapping("/resetpw")
+    public String resetpw(@ModelAttribute Member member, Model model) {
+
+
+        memberService.resetPw(member);
+
+        model.addAttribute("title", "사용자-비밀번호재설정" );
+
+        return "resetpw";
+    }
+
 }

@@ -77,7 +77,15 @@ public class AdminController {
 
     //리스트
     @GetMapping("/admins")
-    public String list(@ModelAttribute DefaultVO defaultVO, Model model) {
+    public String list(@ModelAttribute DefaultVO defaultVO, Model model, HttpSession session) {
+
+        // 세션에서 로그인 정보 확인
+        var adminSession = session.getAttribute("admin");
+
+        if (adminSession == null) {
+            // 세션에 사용자 정보가 없으면 로그인 화면으로 리다이렉트
+            return "redirect:/mgr";
+        }
 
         model.addAttribute("posts", adminService.findAll(defaultVO));
         model.addAttribute("title", "관리자관라-리스트" );
@@ -89,7 +97,15 @@ public class AdminController {
 
     //뷰
     @GetMapping("/admins/{adminSeq}")
-    public String  get(@PathVariable("adminSeq") Long adminSeq, Model model) {
+    public String  get(@PathVariable("adminSeq") Long adminSeq, Model model, HttpSession session) {
+
+        // 세션에서 로그인 정보 확인
+        var adminSession = session.getAttribute("admin");
+
+        if (adminSession == null) {
+            // 세션에 사용자 정보가 없으면 로그인 화면으로 리다이렉트
+            return "redirect:/mgr";
+        }
 
         Admin admin = adminService.find(adminSeq);
         admin.setAdminPw("");
@@ -102,7 +118,15 @@ public class AdminController {
 
     //생성화면
     @GetMapping("/admins/create")
-    public String  createForm(Model model) {
+    public String  createForm(Model model, HttpSession session) {
+
+        // 세션에서 로그인 정보 확인
+        var adminSession = session.getAttribute("admin");
+
+        if (adminSession == null) {
+            // 세션에 사용자 정보가 없으면 로그인 화면으로 리다이렉트
+            return "redirect:/mgr";
+        }
 
         model.addAttribute("title", "관리자관라-생성" );
 
@@ -112,7 +136,15 @@ public class AdminController {
 
     //생성
     @PostMapping("/admins")
-    public String create(@ModelAttribute Admin admin, Model model) {
+    public String create(@ModelAttribute Admin admin, Model model, HttpSession session) {
+
+        // 세션에서 로그인 정보 확인
+        var adminSession = session.getAttribute("admin");
+
+        if (adminSession == null) {
+            // 세션에 사용자 정보가 없으면 로그인 화면으로 리다이렉트
+            return "redirect:/mgr";
+        }
 
         String encryptedPassword = PasswordUtil.encryptPassword(admin.getAdminPw());
         admin.setAdminPw(encryptedPassword);
@@ -125,7 +157,15 @@ public class AdminController {
 
     //수정화면
     @GetMapping("/admins/{adminSeq}/update")
-    public String updateForm(@PathVariable("adminSeq") Long adminSeq, Model model) {
+    public String updateForm(@PathVariable("adminSeq") Long adminSeq, Model model, HttpSession session) {
+
+        // 세션에서 로그인 정보 확인
+        var adminSession = session.getAttribute("admin");
+
+        if (adminSession == null) {
+            // 세션에 사용자 정보가 없으면 로그인 화면으로 리다이렉트
+            return "redirect:/mgr";
+        }
 
         model.addAttribute("post", adminService.find(adminSeq));
         model.addAttribute("title", "관리자관라-수정" );
@@ -135,7 +175,15 @@ public class AdminController {
 
     //수정
     @PostMapping("/admins/{adminSeq}")
-    public String  update(@ModelAttribute Admin admin, Model model, RedirectAttributes redirectAttributes) {
+    public String  update(@ModelAttribute Admin admin, Model model, RedirectAttributes redirectAttributes, HttpSession session) {
+
+        // 세션에서 로그인 정보 확인
+        var adminSession = session.getAttribute("admin");
+
+        if (adminSession == null) {
+            // 세션에 사용자 정보가 없으면 로그인 화면으로 리다이렉트
+            return "redirect:/mgr";
+        }
 
         adminService.update(admin);
 
@@ -148,7 +196,15 @@ public class AdminController {
 
     //사용여부 변경
     @GetMapping("/admins/{adminSeq}/useyn")
-    public String  updateUseYN(@PathVariable("adminSeq") Long adminSeq, Model model, RedirectAttributes redirectAttributes) {
+    public String  updateUseYN(@PathVariable("adminSeq") Long adminSeq, Model model, RedirectAttributes redirectAttributes, HttpSession session) {
+
+        // 세션에서 로그인 정보 확인
+        var adminSession = session.getAttribute("admin");
+
+        if (adminSession == null) {
+            // 세션에 사용자 정보가 없으면 로그인 화면으로 리다이렉트
+            return "redirect:/mgr";
+        }
 
         Admin admin = adminService.find(adminSeq);
 

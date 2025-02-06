@@ -2,6 +2,7 @@ package io.goorm.youtube.service.impl;
 
 import io.goorm.youtube.mapper.MemberMapper;
 import io.goorm.youtube.vo.DefaultVO;
+import io.goorm.youtube.vo.domain.Admin;
 import io.goorm.youtube.vo.domain.Member;
 import io.goorm.youtube.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +44,11 @@ public class MemberServiceImpl implements MemberService {
         return memberMapper.selectById(memberSeq);
     }
 
+    public int resetPw(Member member) {
+
+        return memberMapper.resetPw(member);
+    }
+
     public boolean existsById(String memberId) {
         return memberMapper.existsById(memberId);
     }
@@ -57,9 +63,8 @@ public class MemberServiceImpl implements MemberService {
         return memberMapper.update(member);
     }
 
-    public int updatePublishYn(Member member) {
+    public int updateUseYn(Member member) {
 
         return memberMapper.updateUseYn(member);
     }
-
 }
