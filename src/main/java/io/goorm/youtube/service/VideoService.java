@@ -3,6 +3,7 @@ package io.goorm.youtube.service;
 
 import io.goorm.youtube.vo.DefaultVO;
 import io.goorm.youtube.vo.domain.Video;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 public interface VideoService {
 
 
-    public List<Video> findIndex();
+    public List<Video> findIndex(DefaultVO defaultVO);
 
     public List<Video> findAll(DefaultVO defaultVO);
 

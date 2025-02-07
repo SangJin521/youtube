@@ -7,6 +7,7 @@ import io.goorm.youtube.vo.domain.Video;
 import io.goorm.youtube.service.VideoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.List;
 
@@ -22,9 +23,9 @@ public class VideoServiceImpl implements VideoService {
         this.videoMapper = videoMapper;
     }
 
-    public List<Video> findIndex() {
+    public List<Video> findIndex(DefaultVO defaultVO) {
 
-        return videoMapper.selectIndex();
+        return videoMapper.selectIndex(defaultVO);
     }
 
     public List<Video> findAll(DefaultVO defaultVO) {
